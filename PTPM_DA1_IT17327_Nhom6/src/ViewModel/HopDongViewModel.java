@@ -4,30 +4,31 @@
  */
 package ViewModel;
 
+import java.util.Date;
+
 /**
  *
  * @author User
  */
 public class HopDongViewModel {
         private String id;
-        private String idXe;
-        private String idLoai;
-        private String idPhieu;
-        private Float giaNhap;
+        private String idnv;
+        private String idkh;
+        private Date ngaytao;
+        private Date ngayhethan;
         private int tinhTrangXe;
-        private int bienSo;
+        
 
     public HopDongViewModel() {
     }
 
-    public HopDongViewModel(String id, String idXe, String idLoai, String idPhieu, Float giaNhap, int tinhTrangXe, int bienSo) {
+    public HopDongViewModel(String id, String idnv, String idkh, Date ngaytao, Date ngayhethan, int tinhTrangXe) {
         this.id = id;
-        this.idXe = idXe;
-        this.idLoai = idLoai;
-        this.idPhieu = idPhieu;
-        this.giaNhap = giaNhap;
+        this.idnv = idnv;
+        this.idkh = idkh;
+        this.ngaytao = ngaytao;
+        this.ngayhethan = ngayhethan;
         this.tinhTrangXe = tinhTrangXe;
-        this.bienSo = bienSo;
     }
 
     public String getId() {
@@ -38,36 +39,36 @@ public class HopDongViewModel {
         this.id = id;
     }
 
-    public String getIdXe() {
-        return idXe;
+    public String getIdnv() {
+        return idnv;
     }
 
-    public void setIdXe(String idXe) {
-        this.idXe = idXe;
+    public void setIdnv(String idnv) {
+        this.idnv = idnv;
     }
 
-    public String getIdLoai() {
-        return idLoai;
+    public String getIdkh() {
+        return idkh;
     }
 
-    public void setIdLoai(String idLoai) {
-        this.idLoai = idLoai;
+    public void setIdkh(String idkh) {
+        this.idkh = idkh;
     }
 
-    public String getIdPhieu() {
-        return idPhieu;
+    public Date getNgaytao() {
+        return ngaytao;
     }
 
-    public void setIdPhieu(String idPhieu) {
-        this.idPhieu = idPhieu;
+    public void setNgaytao(Date ngaytao) {
+        this.ngaytao = ngaytao;
     }
 
-    public Float getGiaNhap() {
-        return giaNhap;
+    public Date getNgayhethan() {
+        return ngayhethan;
     }
 
-    public void setGiaNhap(Float giaNhap) {
-        this.giaNhap = giaNhap;
+    public void setNgayhethan(Date ngayhethan) {
+        this.ngayhethan = ngayhethan;
     }
 
     public int getTinhTrangXe() {
@@ -78,12 +79,12 @@ public class HopDongViewModel {
         this.tinhTrangXe = tinhTrangXe;
     }
 
-    public int getBienSo() {
-        return bienSo;
-    }
-
-    public void setBienSo(int bienSo) {
-        this.bienSo = bienSo;
+    
+    public String hienThiTinhTrang(){
+        if (tinhTrangXe == 0) {
+            return "chưa ký";
+        }else
+            return "đã ký";
     }
         
 }

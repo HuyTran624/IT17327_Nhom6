@@ -4,18 +4,23 @@
  */
 package View;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class ChiTietHopDongView extends javax.swing.JFrame {
-
+    private DefaultComboBoxModel defaultComboBoxModel;
+    private DefaultTableModel defaultTableModel;
     /**
      * Creates new form ChiTietHopDongView
      */
     public ChiTietHopDongView() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
