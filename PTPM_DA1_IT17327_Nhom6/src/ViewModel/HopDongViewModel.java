@@ -5,6 +5,7 @@
 package ViewModel;
 
 import Model.*;
+
 import java.util.Date;
 
 /**
@@ -12,6 +13,7 @@ import java.util.Date;
  * @author User
  */
 public class HopDongViewModel {
+
     private String id;
     private String idnv;
     private String idkh;
@@ -22,12 +24,11 @@ public class HopDongViewModel {
     public HopDongViewModel() {
     }
 
-    public HopDongViewModel(String id, String idnv, String idkh, Date ngayTao, Date ngayHetHan, int tinhTrang) {
-        this.id = id;
-        this.idnv = idnv;
-        this.idkh = idkh;
-        this.ngayTao = ngayTao;
-        this.ngayHetHan = ngayHetHan;
+    public int getTinhTrang() {
+        return tinhTrang;
+    }
+
+    public void setTinhTrang(int tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
 
@@ -69,14 +70,6 @@ public class HopDongViewModel {
 
     public void setNgayHetHan(Date ngayHetHan) {
         this.ngayHetHan = ngayHetHan;
-    }
 
-    public int getTinhTrang() {
-        return tinhTrang;
     }
-
-    public void setTinhTrang(int tinhTrang) {
-        this.tinhTrang = tinhTrang;
-    }
-    
 }

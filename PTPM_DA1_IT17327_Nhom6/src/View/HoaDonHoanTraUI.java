@@ -7,7 +7,6 @@ package View;
 import Model.HoaDonHoanTraModel;
 import Model.HopDongModel;
 import Model.KhachHangModel;
-import Repository.HoaDonHoanTraRepo;
 import ViewModel.HoaDonHoanTraViewModel;
 import ViewModel.HopDongViewModel;
 import ViewModel.KhachHangViewModel;
@@ -15,10 +14,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author lilyp
  */
 public class HoaDonHoanTraUI extends javax.swing.JFrame {
-    private final HoaDonHoanTraRepo repo = new HoaDonHoanTraRepo();
+    private HoaDonHoanTraRepo repo;
     /**
      * Creates new form testView
      */
@@ -167,6 +163,11 @@ public class HoaDonHoanTraUI extends javax.swing.JFrame {
         });
 
         btnsua.setText("sửa");
+        btnsua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsuaActionPerformed(evt);
+            }
+        });
 
         btnxoa.setText("xóa");
 
@@ -704,6 +705,16 @@ public class HoaDonHoanTraUI extends javax.swing.JFrame {
     private void btnselect3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselect3ActionPerformed
         txtidhd1.setText(txtidhd3.getText());
     }//GEN-LAST:event_btnselect3ActionPerformed
+
+    private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+        HoaDonHoanTraModel hdhtm = getformdata();
+        if(hdhtm == null){
+            
+        }else{
+            repo.update(hdhtm);
+            loadtablehoadon();
+        }
+    }//GEN-LAST:event_btnsuaActionPerformed
 
     void setcbbtimkiem() {
         DefaultComboBoxModel dcm = (DefaultComboBoxModel) cbbloai.getModel();
