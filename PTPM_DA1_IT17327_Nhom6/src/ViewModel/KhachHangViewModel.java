@@ -10,8 +10,21 @@ package ViewModel;
  */
 public class KhachHangViewModel {
 
-    private String id, ten, sdt, cccd;
-    private int gioitinh, tinhtrang;
+    private String id ,ten, sdt, cccd;
+    private int gioitinh;
+    private String makh;
+
+    public KhachHangViewModel() {
+    }
+
+    public KhachHangViewModel(String id, String ten, String sdt, String cccd, int gioitinh, String makh) {
+        this.id = id;
+        this.ten = ten;
+        this.sdt = sdt;
+        this.cccd = cccd;
+        this.gioitinh = gioitinh;
+        this.makh = makh;
+    }
 
     public String getId() {
         return id;
@@ -53,12 +66,13 @@ public class KhachHangViewModel {
         this.gioitinh = gioitinh;
     }
 
-    public int getTinhtrang() {
-        return tinhtrang;
+    public String getMakh() {
+        return makh;
     }
 
-    public void setTinhtrang(int tinhtrang) {
-        this.tinhtrang = tinhtrang;
+    public void setMakh(String makh) {
+        this.makh = makh;
     }
+    
 
 }

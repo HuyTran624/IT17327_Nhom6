@@ -38,6 +38,7 @@ create table chiTietXe(
 	idPhieu uniqueidentifier foreign key references phieuBaoDuong(id),
 	giaNhap float,
 	tinhTrangXe int,
+	TrangThai int,
 	bienSo nvarchar(50),
 )
 
@@ -51,14 +52,15 @@ create table nhanVien(
 	idChucVu uniqueidentifier foreign key references chucVu(id)
 )
 
-create table khachHang(
 
+create table khachHang(
 	id uniqueidentifier primary key,
 	ten nvarchar(50),
 	sdt nvarchar(50),
 	gioiTinh bit,
 	cCCD nvarchar(50)
 )
+ALTER TABLE khachhang add makh varchar(max)
 
 create table hopDong(
 
@@ -91,3 +93,6 @@ create table chiTietHopDong(
 	tienCoc float,
 	primary key (idHopDong,idXe)
 )
+Select *  from khachHang
+Delete  from khachHang
+Select COUNT(id) from khachHang
