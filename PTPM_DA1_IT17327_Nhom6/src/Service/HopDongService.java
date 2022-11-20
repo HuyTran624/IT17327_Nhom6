@@ -11,14 +11,14 @@ import Model.KhachHangModel;
 
 import Model.NhanVienModel;
 
-import ViewModel.HopDongViewModel;
+import ViewModel.ChiTietXeViewModel;
 
 /**
  *
  * @author User
  */
 public interface HopDongService {
-        public ArrayList<HopDongViewModel> getHopDong();
+        public ArrayList<ChiTietXeViewModel> getHopDong();
         public ArrayList<NhanVienModel> getCbNhanVien();
         public ArrayList<KhachHangModel> getCbKhachHang();
        
