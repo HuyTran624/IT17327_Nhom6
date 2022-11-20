@@ -77,5 +77,10 @@ public class HopDongModel {
     public void setTinhTrang(int tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
+
+    @Override
+    public String toString() {
+        return id;
+    }
     
 }

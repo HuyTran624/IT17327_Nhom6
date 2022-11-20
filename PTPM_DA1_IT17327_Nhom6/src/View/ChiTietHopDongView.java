@@ -4,6 +4,13 @@
  */
 package View;
 
+import Model.ChiTietXeModel;
+import Model.HopDongModel;
+import Service.HopDongService;
+import Service.Impl.HopDongServiceImpl;
+import ViewModel.ChiTietHopDongViewModel;
+import ViewModel.HopDongViewModel;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,11 +21,47 @@ import javax.swing.table.DefaultTableModel;
 public class ChiTietHopDongView extends javax.swing.JFrame {
     private DefaultComboBoxModel defaultComboBoxModel;
     private DefaultTableModel defaultTableModel;
+    private HopDongService hopDongService = new HopDongServiceImpl();
     /**
      * Creates new form ChiTietHopDongView
      */
     public ChiTietHopDongView() {
         initComponents();
+        loadDataHD(hopDongService.getList());
+        loadDataChiTiet(hopDongService.getListChiTiet());
+        addCbid(hopDongService.getCbid());
+        addCbHd(hopDongService.getCbHd());
+    }
+    void loadDataHD(ArrayList<HopDongViewModel> list){
+        defaultTableModel = (DefaultTableModel) tbl_hopdong.getModel();
+        defaultTableModel.setRowCount(0);
+        for(HopDongViewModel hopDongViewModel: list){
+            defaultTableModel.addRow(new Object[]{
+                hopDongService.tenNhanVien(hopDongViewModel.getIdnv()),hopDongService.tenKhachHang(hopDongViewModel.getIdkh()),
+                hopDongViewModel.getNgaytao(),hopDongViewModel.getNgayhethan(),hopDongViewModel.hienThiTinhTrang()
+            });
+        }
+    }
+    void loadDataChiTiet(ArrayList<ChiTietHopDongViewModel> list){
+        defaultTableModel = (DefaultTableModel) tbl_chitiet.getModel();
+        defaultTableModel.setRowCount(0);
+        for(ChiTietHopDongViewModel x:list){
+            defaultTableModel.addRow(new Object[]{
+                x.getIdhd(),x.getIdxe(),x.getDonGia(),x.getSoLuong(),x.getTiencoc()
+            });
+        }
+    }
+    void addCbid(ArrayList<ChiTietXeModel> list){
+        defaultComboBoxModel = (DefaultComboBoxModel) cbo_idxe.getModel();
+        for(ChiTietXeModel chiTietXeModel:list){
+            defaultComboBoxModel.addElement(chiTietXeModel);
+        }
+    }
+    void addCbHd(ArrayList<HopDongModel> list){
+        defaultComboBoxModel = (DefaultComboBoxModel) cbo_idhopdong.getModel();
+        for(HopDongModel x:list){
+            defaultComboBoxModel.addElement(x);
+        }
     }
     
 
@@ -34,25 +77,25 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_chitiet = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_add = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        btn_find = new javax.swing.JButton();
+        cbo_idhopdong = new javax.swing.JComboBox<>();
+        cbo_idxe = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbl_hopdong = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,21 +105,21 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_chitiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Hợp đồng", "Tên Xe", "Đơn giá", "Số lượng", "Tiền cọc"
+                "ID Hợp đồng", "ID XE", "Đơn giá", "Số lượng", "Tiền cọc"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_chitiet);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Form", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         jLabel2.setText("ID Hợp Đồng");
 
-        jLabel3.setText("Tên Xe");
+        jLabel3.setText("ID Xe");
 
         jLabel4.setText("Đơn GIá");
 
@@ -84,17 +127,22 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
 
         jLabel6.setText("Tiền cọc");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Add.png"))); // NOI18N
-        jButton1.setText("Thêm");
+        btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Add.png"))); // NOI18N
+        btn_add.setText("Thêm");
+        btn_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Gear.png"))); // NOI18N
-        jButton2.setText("Sửa");
+        btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Gear.png"))); // NOI18N
+        btn_update.setText("Sửa");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Delete.png"))); // NOI18N
-        jButton3.setText("Xóa");
+        btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Delete.png"))); // NOI18N
+        btn_delete.setText("Xóa");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Search.png"))); // NOI18N
-        jButton4.setText("Tìm kiếm");
+        btn_find.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Search.png"))); // NOI18N
+        btn_find.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -114,32 +162,32 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5))
+                            .addComponent(jTextField5)
+                            .addComponent(cbo_idhopdong, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbo_idxe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(46, 46, 46))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jButton1)
+                        .addComponent(btn_add)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btn_update)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton3)
+                        .addComponent(btn_delete)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton4))))
+                        .addComponent(btn_find))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cbo_idhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                    .addComponent(cbo_idxe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,16 +204,16 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btn_add)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete)
+                    .addComponent(btn_find))
                 .addGap(27, 27, 27))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hợp đồng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_hopdong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -176,8 +224,8 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
                 "Tên nhân viên", "Tên khách hàng", "Ngày tạo", "Ngày hết hạn", "Tình trạng"
             }
         ));
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
+        tbl_hopdong.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tbl_hopdong);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -261,6 +309,10 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_addActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,10 +349,12 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_find;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JComboBox<String> cbo_idhopdong;
+    private javax.swing.JComboBox<String> cbo_idxe;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -313,12 +367,10 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tbl_chitiet;
+    private javax.swing.JTable tbl_hopdong;
     // End of variables declaration//GEN-END:variables
 }

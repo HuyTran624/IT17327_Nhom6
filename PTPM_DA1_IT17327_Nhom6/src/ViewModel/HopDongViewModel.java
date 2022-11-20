@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ViewModel;
-
-import Model.*;
 
 import java.util.Date;
 
@@ -14,23 +11,24 @@ import java.util.Date;
  * @author User
  */
 public class HopDongViewModel {
-
-    private String id;
-    private String idnv;
-    private String idkh;
-    private Date ngayTao;
-    private Date ngayHetHan;
-    private int tinhTrang;
+        private String id;
+        private String idnv;
+        private String idkh;
+        private Date ngaytao;
+        private Date ngayhethan;
+        private int tinhTrangXe;
+        
 
     public HopDongViewModel() {
     }
 
-    public int getTinhTrang() {
-        return tinhTrang;
-    }
-
-    public void setTinhTrang(int tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public HopDongViewModel(String id, String idnv, String idkh, Date ngaytao, Date ngayhethan, int tinhTrangXe) {
+        this.id = id;
+        this.idnv = idnv;
+        this.idkh = idkh;
+        this.ngaytao = ngaytao;
+        this.ngayhethan = ngayhethan;
+        this.tinhTrangXe = tinhTrangXe;
     }
 
     public String getId() {
@@ -57,97 +55,36 @@ public class HopDongViewModel {
         this.idkh = idkh;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
+    public Date getNgaytao() {
+        return ngaytao;
     }
 
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
+    public void setNgaytao(Date ngaytao) {
+        this.ngaytao = ngaytao;
     }
 
-    public Date getNgayHetHan() {
-        return ngayHetHan;
+    public Date getNgayhethan() {
+        return ngayhethan;
     }
 
-    public void setNgayHetHan(Date ngayHetHan) {
-        this.ngayHetHan = ngayHetHan;
-
+    public void setNgayhethan(Date ngayhethan) {
+        this.ngayhethan = ngayhethan;
     }
+
+    public int getTinhTrangXe() {
+        return tinhTrangXe;
+    }
+
+    public void setTinhTrangXe(int tinhTrangXe) {
+        this.tinhTrangXe = tinhTrangXe;
+    }
+
+    
+    public String hienThiTinhTrang(){
+        if (tinhTrangXe == 0) {
+            return "chưa ký";
+        }else
+            return "đã ký";
+    }
+        
 }
-=======
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ViewModel;
-
-import Model.*;
-
-import java.util.Date;
-
-/**
- *
- * @author User
- */
-public class HopDongViewModel {
-
-    private String id;
-    private String idnv;
-    private String idkh;
-    private Date ngayTao;
-    private Date ngayHetHan;
-    private int tinhTrang;
-
-    public HopDongViewModel() {
-    }
-
-    public int getTinhTrang() {
-        return tinhTrang;
-    }
-
-    public void setTinhTrang(int tinhTrang) {
-        this.tinhTrang = tinhTrang;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getIdnv() {
-        return idnv;
-    }
-
-    public void setIdnv(String idnv) {
-        this.idnv = idnv;
-    }
-
-    public String getIdkh() {
-        return idkh;
-    }
-
-    public void setIdkh(String idkh) {
-        this.idkh = idkh;
-    }
-
-    public Date getNgayTao() {
-        return ngayTao;
-    }
-
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
-
-    public Date getNgayHetHan() {
-        return ngayHetHan;
-    }
-
-    public void setNgayHetHan(Date ngayHetHan) {
-        this.ngayHetHan = ngayHetHan;
-
-    }
-}
->>>>>>> 46b1e60b4643f9f8bdb519e206a41d7dcfa27586

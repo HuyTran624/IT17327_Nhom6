@@ -65,5 +65,7 @@ public class ChiTietHopDongViewModel {
     public void setTiencoc(Float tiencoc) {
         this.tiencoc = tiencoc;
     }
+    
+   
         
 }
