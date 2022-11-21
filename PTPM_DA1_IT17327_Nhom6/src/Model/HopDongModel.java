@@ -78,9 +78,6 @@ public class HopDongModel {
         this.tinhTrang = tinhTrang;
     }
 
-    @Override
-    public String toString() {
-        return id;
-    }
+    
     
 }

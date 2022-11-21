@@ -42,6 +42,18 @@ public class HopDongRepo {
         }
         return listHopDongViewModels;
     }
+    public Boolean deleteHopDong(String id){
+        String sql = "DELETE From hopdong where id = CONVERT(uniqueidentifier,?)";
+        try(Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1,id);
+            ps.executeUpdate();
+            return true;
+            
+        } catch (Exception e) {
+        }
+        return false;
+    }
     public ArrayList<NhanVienModel> getCbNhanVien(){
         ArrayList<NhanVienModel> list = new ArrayList<>();
         String sql = "Select id,ten"
@@ -78,6 +90,24 @@ public class HopDongRepo {
         }
         return list;
     }
+    public Boolean add(HopDongModel hopDongModel){
+        int checkInsert = 0;
+        String sql = "INSERT INTO hopdong(id,idnv,idkh,ngaytao,ngayhethan,tinhtrang) values (CONVERT(uniqueidentifier,?),CONVERT(uniqueidentifier,?),CONVERT(uniqueidentifier,?),?,?,?)";
+        try (Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setObject(1, hopDongModel.getId());
+            ps.setObject(2,hopDongModel.getIdnv());
+            ps.setObject(3, hopDongModel.getIdkh());
+            ps.setDate(4, new java.sql.Date(hopDongModel.getNgayTao().getTime()));
+            ps.setDate(5, new java.sql.Date(hopDongModel.getNgayHetHan().getTime()));
+            ps.setInt(6, hopDongModel.getTinhTrang());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }
     public ArrayList<ChiTietHopDongViewModel> getListChiTiet(){
         ArrayList<ChiTietHopDongViewModel> listHopDongViewModels = new ArrayList<>();
         String sql = "SELECT idHopDong,idxe,dongia,soluong,tiencoc from chitiethopdong";
@@ -104,20 +134,79 @@ public class HopDongRepo {
                 PreparedStatement ps = con.prepareStatement(sql)){
            ps.setObject(1,chiTietHopDongModel.getIdhd());
            ps.setObject(2, chiTietHopDongModel.getIdxe());
-           ps.setObject(3, chiTietHopDongModel.getDongGia());
+           ps.setObject(3, chiTietHopDongModel.getDonGia());
            ps.setObject(4, chiTietHopDongModel.getSoLuong());
            ps.setObject(5, chiTietHopDongModel.getTienCoc());
+           ps.executeUpdate();
            return true;
             
         } catch (Exception e) {
+            return false;
         }
-        return false;
+        
+    }
+    public Boolean DeleteChiTiet(String idhd){
+        String sql = "DELETE FROM chitiethopdong where idHopDong = CONVERT(uniqueidentifier,?)";
+        try (Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setObject(1, idhd);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public Boolean updateChiTiet(ChiTietHopDongModel chiTietHopDongModel,String idhd){
+        String sql = "UPDATE chitiethopdong set idXe = convert(uniqueidentifier,?), dongia = ?, soluong = ?, tiencoc = ? where idHopDong = convert(uniqueidentifier,?)";
+        try(Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+           ps.setObject(1, chiTietHopDongModel.getIdxe());
+           ps.setObject(2, chiTietHopDongModel.getDonGia());
+           ps.setObject(3, chiTietHopDongModel.getSoLuong());
+           ps.setObject(4, chiTietHopDongModel.getTienCoc());
+           ps.setObject(5, idhd);
+           ps.executeUpdate();
+           return true;
+            
+        } catch (Exception e) {
+            return false;
+        }
     }
     public String tenNhanVien(String id){
         String sql ="SELECT ten from nhanvien where id = CONVERT(uniqueidentifier,?)";
         try(Connection con = connections.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                return rs.getString(1);
+                
+            }
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    public String idnhanvien(String ten){
+        String sql = "Select id from nhanvien where ten = ?";
+        try(Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                return rs.getString(1);
+                
+            }
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    public String idkhachhang(String ten){
+        String sql = "Select id from khachhang where ten = ?";
+        try(Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 return rs.getString(1);
@@ -143,16 +232,15 @@ public class HopDongRepo {
         }
         return null;
     }
-    public ArrayList<ChiTietXeModel> getCbid(){
-        ArrayList<ChiTietXeModel> list = new ArrayList<>();
+    public ArrayList<String> getCbid(){
+        ArrayList<String> list = new ArrayList<>();
         String sql ="Select id from chitietxe";
           try(Connection con = connections.getConnection();
                     PreparedStatement ps = con.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    ChiTietXeModel chiTietXeModel = new ChiTietXeModel();
-                    chiTietXeModel.setId(rs.getString(1));
-                    list.add(chiTietXeModel);
+                    String a = rs.getString(1);
+                    list.add(a);
                 }
                 
             } catch (Exception e) {
@@ -160,20 +248,72 @@ public class HopDongRepo {
             return list;
         
     }
-    public ArrayList<HopDongModel> getCbHD(){
-         ArrayList<HopDongModel> list = new ArrayList<>();
+    public ArrayList<String> getCbHD(){
+         ArrayList<String> list = new ArrayList<>();
         String sql ="Select id from hopdong";
           try(Connection con = connections.getConnection();
                     PreparedStatement ps = con.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    HopDongModel hopDongModel = new HopDongModel();
-                    hopDongModel.setId(rs.getString(1));
-                    list.add(hopDongModel);
+                    String a = rs.getString(1);
+                    list.add(a);
                 }
                 
             } catch (Exception e) {
             }
             return list;
 }
+    public ArrayList<String> getCbNV(){
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select ten from nhanvien";
+         try(Connection con = connections.getConnection();
+                    PreparedStatement ps = con.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    String a = rs.getString(1);
+                    list.add(a);
+                }
+                
+            } catch (Exception e) {
+            }
+            return list;
+}
+      public ArrayList<String> getCbKH(){
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select ten from khachhang";
+         try(Connection con = connections.getConnection();
+                    PreparedStatement ps = con.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    String a = rs.getString(1);
+                    list.add(a);
+                }
+                
+            } catch (Exception e) {
+            }
+            return list;
+}
+    
+    public Boolean findHdById(String idhd){
+        
+        String sql = "SELECT * From chitiethopdong where idHopDong = CONVERT(uniqueidentifier,?)";
+        
+        try(Connection con = connections.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, idhd);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                ChiTietHopDongModel chiTietHopDongModel = new ChiTietHopDongModel();
+                chiTietHopDongModel.setIdhd(rs.getString(1));
+                chiTietHopDongModel.setIdxe(rs.getString(2));
+                chiTietHopDongModel.setDonGia(rs.getFloat(3));
+                chiTietHopDongModel.setSoLuong(rs.getInt(4));
+                chiTietHopDongModel.setTienCoc(rs.getFloat(5));
+                return null;
+            }
+            
+        } catch (Exception e) {
+        }
+        return null;
+    }
 }

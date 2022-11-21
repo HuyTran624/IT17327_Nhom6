@@ -11,17 +11,17 @@ package Model;
 public class ChiTietHopDongModel {
         private String idhd;
         private String idxe;
-        private Float dongGia;
+        private Float donGia;
         private int soLuong;
         private Float tienCoc;
 
     public ChiTietHopDongModel() {
     }
 
-    public ChiTietHopDongModel(String idhd, String idxe, Float dongGia, int soLuong, Float tienCoc) {
+    public ChiTietHopDongModel(String idhd, String idxe, Float donGia, int soLuong, Float tienCoc) {
         this.idhd = idhd;
         this.idxe = idxe;
-        this.dongGia = dongGia;
+        this.donGia = donGia;
         this.soLuong = soLuong;
         this.tienCoc = tienCoc;
     }
@@ -42,12 +42,12 @@ public class ChiTietHopDongModel {
         this.idxe = idxe;
     }
 
-    public Float getDongGia() {
-        return dongGia;
+    public Float getDonGia() {
+        return donGia;
     }
 
-    public void setDongGia(Float dongGia) {
-        this.dongGia = dongGia;
+    public void setDonGia(Float donGia) {
+        this.donGia = donGia;
     }
 
     public int getSoLuong() {

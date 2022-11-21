@@ -28,23 +28,23 @@ public class HopDongServiceImpl implements HopDongService{
     }
 
     @Override
-    public ArrayList<NhanVienModel> getCbNhanVien() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<String> getCbNhanVien() {
+        return hopDongRepo.getCbNV();
     }
 
     @Override
-    public ArrayList<KhachHangModel> getCbKhachHang() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<String> getCbKhachHang() {
+        return hopDongRepo.getCbKH();
     }
 
     @Override
     public Boolean add(HopDongModel hopDongModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return hopDongRepo.add(hopDongModel);
     }
 
     @Override
     public Boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return hopDongRepo.deleteHopDong(id);
     }
 
     @Override
@@ -83,19 +83,39 @@ public class HopDongServiceImpl implements HopDongService{
     }
 
     @Override
-    public Boolean DeleteChiTiet(String id) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Boolean DeleteChiTiet(String idhd) {
+        return hopDongRepo.DeleteChiTiet(idhd);
 
     }
 
     @Override
-    public ArrayList<ChiTietXeModel> getCbid() {
+    public ArrayList<String> getCbid() {
         return hopDongRepo.getCbid();
     }
 
     @Override
-    public ArrayList<HopDongModel> getCbHd() {
+    public ArrayList<String> getCbHd() {
         return hopDongRepo.getCbHD();
+    }
+
+    @Override
+    public Boolean updateChiTiet(ChiTietHopDongModel chiTietHopDongModel, String idhd) {
+        return hopDongRepo.updateChiTiet(chiTietHopDongModel, idhd);
+    }
+
+    @Override
+    public Boolean findHDbyId(String idhd) {
+        return hopDongRepo.findHdById(idhd);
+    }
+
+    @Override
+    public String idnhanvien(String ten) {
+        return hopDongRepo.idnhanvien(ten);
+    }
+
+    @Override
+    public String idkhachhang(String ten) {
+        return hopDongRepo.idkhachhang(ten);
     }
 
     
