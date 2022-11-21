@@ -13,12 +13,12 @@ import java.sql.SQLException;
  * @author Admin
  */
 public class DBConnections {
-    
+
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
     public static final String DBNAME = "DA1_PTPM_IT17327_Nhom6";
-    public static final String USERNAME = "abc";
-    public static final String PASSWORD = "123456";
+    public static final String USERNAME = "sa";
+    public static final String PASSWORD = "huy123456";
 
     /**
      * Get connection to MSSQL Server
