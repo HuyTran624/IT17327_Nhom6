@@ -8,12 +8,16 @@ create table xe(
 	ten nvarchar(50) 
 )
 
+insert into xe(id) values(newid())
+
 create table loaiXe(
 
 	id uniqueidentifier primary key,
 	ma nvarchar(50),
 	ten nvarchar(50),
 )
+
+insert into loaiXe(id) values(newid())
 
 create table phieuBaoDuong(
 
@@ -23,6 +27,26 @@ create table phieuBaoDuong(
 	ngayHoanThanh date,
 	chiPhi float
 )
+
+insert into phieuBaoDuong(id, ngayBaoDuong, ngayHoanThanh, chiPhi, bienSoXe) 
+values(newid(), '2022-11-19', '2022-11-22', 500000, 'H0123456')
+
+select * from phieuBaoDuong
+
+delete from phieuBaoDuong where id = '3B99E685-EF71-4EFF-875A-A90FC416F222' 
+
+alter table phieuBaoDuong 
+add bienSoXe varchar(50) 
+
+alter table phieuBaoDuong 
+drop column idXe
+
+select id, ngayBaoDuong, ngayHoanThanh, chiPhi, bienSoXe 
+from phieuBaoDuong where bienSoXe = ?
+
+update phieuBaoDuong
+set ngayBaoDuong = ?, ngayHoanThanh = ?, chiPhi = ?, bienSoXe = ?
+where phieuBaoDuong.id = ?
 
 create table chucVu(
 
@@ -38,9 +62,10 @@ create table chiTietXe(
 	idPhieu uniqueidentifier foreign key references phieuBaoDuong(id),
 	giaNhap float,
 	tinhTrangXe int,
-	TrangThai int,
 	bienSo nvarchar(50),
 )
+
+select * from chiTietXe
 
 create table nhanVien(
 
@@ -52,15 +77,14 @@ create table nhanVien(
 	idChucVu uniqueidentifier foreign key references chucVu(id)
 )
 
-
 create table khachHang(
+
 	id uniqueidentifier primary key,
 	ten nvarchar(50),
 	sdt nvarchar(50),
 	gioiTinh bit,
 	cCCD nvarchar(50)
 )
-ALTER TABLE khachhang add makh varchar(max)
 
 create table hopDong(
 
@@ -93,6 +117,3 @@ create table chiTietHopDong(
 	tienCoc float,
 	primary key (idHopDong,idXe)
 )
-Select *  from khachHang
-Delete  from khachHang
-Select COUNT(id) from khachHang
