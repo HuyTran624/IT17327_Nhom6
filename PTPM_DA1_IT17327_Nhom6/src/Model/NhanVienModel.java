@@ -4,31 +4,31 @@
  */
 package Model;
 
-import java.util.BitSet;
+
 import java.util.Date;
 
 /**
  *
- * @author User
+ * @author nguye
  */
 public class NhanVienModel {
     private String id;
-    private String ten;
-    private Date ngaySinh;
+    private String Ten;
+    private String NgaySinh;
     private String sdt;
-    private BitSet gioiTinh;
-    private String idcv;
+    private int GioiTinh;
+    private DangNhapModel dnm;
 
     public NhanVienModel() {
     }
 
-    public NhanVienModel(String id, String ten, Date ngaySinh, String sdt, BitSet gioiTinh, String idcv) {
+    public NhanVienModel(String id, String Ten, String NgaySinh, String sdt, int GioiTinh, DangNhapModel dnm) {
         this.id = id;
-        this.ten = ten;
-        this.ngaySinh = ngaySinh;
+        this.Ten = Ten;
+        this.NgaySinh = NgaySinh;
         this.sdt = sdt;
-        this.gioiTinh = gioiTinh;
-        this.idcv = idcv;
+        this.GioiTinh = GioiTinh;
+        this.dnm = dnm;
     }
 
     public String getId() {
@@ -40,19 +40,19 @@ public class NhanVienModel {
     }
 
     public String getTen() {
-        return ten;
+        return Ten;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setTen(String Ten) {
+        this.Ten = Ten;
     }
 
-    public Date getNgaySinh() {
-        return ngaySinh;
+    public String getNgaySinh() {
+        return NgaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setNgaySinh(String NgaySinh) {
+        this.NgaySinh = NgaySinh;
     }
 
     public String getSdt() {
@@ -63,26 +63,24 @@ public class NhanVienModel {
         this.sdt = sdt;
     }
 
-    public BitSet getGioiTinh() {
-        return gioiTinh;
+    public int getGioiTinh() {
+        return GioiTinh;
     }
 
-    public void setGioiTinh(BitSet gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setGioiTinh(int GioiTinh) {
+        this.GioiTinh = GioiTinh;
     }
 
-    public String getIdcv() {
-        return idcv;
+    public DangNhapModel getDnm() {
+        return dnm;
     }
 
-    public void setIdcv(String idcv) {
-        this.idcv = idcv;
+    public void setDnm(DangNhapModel dnm) {
+        this.dnm = dnm;
     }
 
-    @Override
-    public String toString() {
-        return ten;
-    }
+    
+    
     
     
 }
