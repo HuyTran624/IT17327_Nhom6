@@ -5,9 +5,11 @@
  */
 package Service.Impl;
 
+import Model.HoaDonHoanTraModel;
 import Model.KhachHangModel;
 import Repository.KhachHangRepo;
 import Service.KhachHangService;
+import ViewModel.HoaDonHoanTraViewModel;
 import ViewModel.KhachHangViewModel;
 import java.util.ArrayList;
 
@@ -15,7 +17,8 @@ import java.util.ArrayList;
  *
  * @author HA NGUYEN
  */
-public class KhachHangServiceImpl implements KhachHangService{
+public class KhachHangServiceImpl implements KhachHangService {
+
     KhachHangRepo khrp = new KhachHangRepo();
 
     @Override
@@ -35,9 +38,17 @@ public class KhachHangServiceImpl implements KhachHangService{
 
     @Override
     public int getcountDB() {
-        return  khrp.getcountDB(); //To change body of generated methods, choose Tools | Templates.
+        return khrp.getcountDB(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
+    @Override
+    public ArrayList<KhachHangViewModel> search(String tenn) {
+        return khrp.search(tenn);
+    }
+
+    @Override
+    public ArrayList<HoaDonHoanTraViewModel> searchGD(String tenn) {
+        return khrp.searchGD(tenn); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
