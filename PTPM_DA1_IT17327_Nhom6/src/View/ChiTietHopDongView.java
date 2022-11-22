@@ -11,6 +11,7 @@ import Service.HopDongService;
 import Service.Impl.HopDongServiceImpl;
 import ViewModel.ChiTietHopDongViewModel;
 import ViewModel.HopDongViewModel;
+import java.awt.Color;
 import java.beans.Customizer;
 import java.util.ArrayList;
 import java.sql.*;
@@ -478,6 +479,49 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // TODO add your handling code here:
+        String p_scmt = "[0-9]{1,12}";
+        if(txt_dongia.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa điền đơn giá");
+            txt_dongia.requestFocus();
+            txt_dongia.setBackground(Color.red);
+            txt_dongia.setText("");
+            return;
+        }else
+            if(txt_dongia.getText().matches(p_scmt)==false){
+                JOptionPane.showMessageDialog(this, "đơn giá sai định dạng");
+                txt_dongia.requestFocus();
+                txt_dongia.setBackground(Color.red);
+                txt_dongia.setText("");
+                return;
+            }
+        if(txt_soluong.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa điền số lượng");
+            txt_soluong.requestFocus();
+            txt_soluong.setBackground(Color.red);
+            txt_soluong.setText("");
+            return;
+        }else
+            if(txt_soluong.getText().matches(p_scmt)==false){
+                JOptionPane.showMessageDialog(this, "số lượng sai định dạng");
+                txt_soluong.requestFocus();
+                txt_soluong.setBackground(Color.red);
+                txt_soluong.setText("");
+                return;
+            }
+        if(txt_tiencoc.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa điền tiền cọc");
+            txt_tiencoc.requestFocus();
+            txt_tiencoc.setBackground(Color.red);
+            txt_tiencoc.setText("");
+            return;
+        }else
+            if(txt_tiencoc.getText().matches(p_scmt)==false){
+                JOptionPane.showMessageDialog(this, "tiền cọc sai định dạng");
+                txt_tiencoc.requestFocus();
+                txt_tiencoc.setBackground(Color.red);
+                txt_tiencoc.setText("");
+                return;
+            }
         ChiTietHopDongModel chiTietHopDongModel = new ChiTietHopDongModel();
         chiTietHopDongModel.setIdhd(cbo_idhopdong.getSelectedItem().toString());
         chiTietHopDongModel.setIdxe(cbo_idxe.getSelectedItem().toString());
@@ -542,8 +586,11 @@ public class ChiTietHopDongView extends javax.swing.JFrame {
     private void btn_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_findActionPerformed
         // TODO add your handling code here:
         txt_dongia.setText("");
+        txt_dongia.setBackground(Color.WHITE);
         txt_soluong.setText("");
+        txt_soluong.setBackground(Color.white);
         txt_tiencoc.setText("");
+        txt_tiencoc.setBackground(Color.white);
        
     }//GEN-LAST:event_btn_findActionPerformed
 

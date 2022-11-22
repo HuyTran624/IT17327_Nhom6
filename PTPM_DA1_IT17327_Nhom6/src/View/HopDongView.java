@@ -10,6 +10,7 @@ import Model.KhachHangModel;
 import Service.HopDongService;
 import Service.Impl.HopDongServiceImpl;
 import ViewModel.HopDongViewModel;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
@@ -355,6 +356,23 @@ public class HopDongView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        if(txt_ngaytao.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa điền ngày tạo");
+            txt_ngaytao.requestFocus();
+            txt_ngaytao.setBackground(Color.red);
+            txt_ngaytao.setText("");
+            return;
+        }
+         
+        if(txt_ngayhethan.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa điền ngày hết hạn");
+            txt_ngayhethan.requestFocus();
+            txt_ngayhethan.setBackground(Color.red);
+            txt_ngayhethan.setText("");
+            return;
+        }
         HopDongModel hopDongModel = new HopDongModel();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         hopDongModel.setId(UUID.randomUUID().toString());
