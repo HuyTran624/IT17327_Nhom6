@@ -5,7 +5,9 @@
  */
 package Service;
 
+import Model.HoaDonHoanTraModel;
 import Model.KhachHangModel;
+import ViewModel.HoaDonHoanTraViewModel;
 import ViewModel.KhachHangViewModel;
 import java.util.ArrayList;
 
@@ -18,4 +20,6 @@ public interface KhachHangService {
     public Boolean addKH(KhachHangModel kh);
     public Boolean updateKH(KhachHangModel kh);
     public int getcountDB();
+    public ArrayList<KhachHangViewModel> search(String tenn);
+    public ArrayList<HoaDonHoanTraViewModel> searchGD(String tenn);
 }
