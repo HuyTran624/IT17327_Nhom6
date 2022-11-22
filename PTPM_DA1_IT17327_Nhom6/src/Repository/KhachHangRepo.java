@@ -7,6 +7,7 @@ package Repository;
 
 import Model.KhachHangModel;
 import Utilities.DBConnections_Ha;
+import ViewModel.HoaDonHoanTraViewModel;
 import ViewModel.KhachHangViewModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,5 +88,58 @@ public class KhachHangRepo {
         }
         return mkh;
         
+    }
+    public ArrayList<KhachHangViewModel> search(String ten){
+        String sql = "Select makh, Ten, sdt,gioitinh , cccd from khachhang where makh =? or ten = ? or sdt = ? or cccd = ? ";
+        ArrayList<KhachHangViewModel> listKH = new ArrayList<>();
+        try (Connection con = connections_Ha.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, ten);
+            ps.setString(2, ten);
+            ps.setString(3, ten);
+            ps.setString(4, ten);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHangViewModel g = new KhachHangViewModel();
+                g.setMakh(rs.getString(1));
+                g.setTen(rs.getString(2));
+                g.setSdt(rs.getString(3));
+                g.setGioitinh(rs.getInt(4));
+                g.setCccd(rs.getString(5));
+                listKH.add(g);
+
+            }
+            return listKH;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    public ArrayList<HoaDonHoanTraViewModel> searchGD(String makh){
+        String sql = "Select khachhang.makh ,hoadonhoantra.id, hoadonhoantra.idHopDong,hoadonhoantra.ngayTra, hoadonhoantra.dongia + hoadonhoantra.phiphatsinh,hoadonhoantra.tinhtrang "
+                + "from khachhang join hoadonhoantra on khachhang.id = hoadonhoantra.idkh where makh =?";
+        ArrayList<HoaDonHoanTraViewModel> listGD = new ArrayList<>();
+        try (Connection con = connections_Ha.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, makh);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonHoanTraViewModel gg = new HoaDonHoanTraViewModel();
+                KhachHangViewModel g = new KhachHangViewModel();
+                gg.setId(rs.getString(2));
+                gg.setIdhd(rs.getString(3));
+                gg.setNgaytra(rs.getDate(4));
+                gg.setDongia(rs.getDouble(5));
+                gg.setTinhtrang(rs.getInt(6));
+                listGD.add(gg);
+
+            }
+            return listGD;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    
     }
 }
