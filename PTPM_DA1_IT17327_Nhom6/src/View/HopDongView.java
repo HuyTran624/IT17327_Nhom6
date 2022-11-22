@@ -487,31 +487,7 @@ public class HopDongView extends javax.swing.JFrame {
         });
     }
       
-    public HopDongModel getformdata() {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-           HopDongModel hdm = new HopDongModel();
-            hdm.setId(txt_id.getText());
-            hdm.setIdnv(cbo_tennhanvien.getSelectedItem().toString());
-            hdm.setIdkh(cbo_tenkhachhang.getSelectedItem().toString());
-            
-            hdm.setNgayTao(sdf.parse(txt_ngaytao.getText()));
-            hdm.setNgayHetHan(sdf.parse(txt_ngayhethan.getText()));
-            int tinhTrang = 0;
-            if(rdo_daky.isSelected()){
-                tinhTrang = 1;
-            }
-            hdm.setTinhTrang(tinhTrang);
-            
-           
-            
-            return hdm;
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-            System.out.println("null getformdata");
-            return null;
-        }
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_print;
