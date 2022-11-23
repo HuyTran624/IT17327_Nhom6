@@ -7,7 +7,6 @@ package Repository;
 import Model.DangNhapModel;
 import Model.NhanVienModel;
 import Utilities.DBConnections;
-import ViewModel.DangNhapViewModel;
 import ViewModel.NhanVienViewModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

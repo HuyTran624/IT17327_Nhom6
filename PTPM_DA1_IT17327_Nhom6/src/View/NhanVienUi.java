@@ -7,7 +7,7 @@ package View;
 import Model.DangNhapModel;
 import Service.Impl.NhanVienServiceImpl;
 import Service.NhanVienService;
-import ViewModel.DangNhapViewModel;
+
 import ViewModel.NhanVienViewModel;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -316,10 +316,12 @@ public class NhanVienUi extends javax.swing.JFrame {
             return;
         }else if(txtSdt.getText().matches("[0-9]{10}") == false){
             JOptionPane.showMessageDialog(this, "Sai định dạng số điện thoại");
+            return;
         }
         try {
             if (txtSdt.getText().trim().length() != 10) {
                 JOptionPane.showMessageDialog(this, "Số điện thoại phải có 10 số");
+                return;
             }
             if(txtSdt.getText().charAt(0)!='0'){
                 JOptionPane.showMessageDialog(this, "Số điện thoại phải bắt đầu bằng 0");
@@ -424,6 +426,7 @@ public class NhanVienUi extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NhanVienUi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
