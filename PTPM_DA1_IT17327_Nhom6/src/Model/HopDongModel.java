@@ -11,23 +11,24 @@ import java.util.Date;
  * @author User
  */
 public class HopDongModel {
+
     private String id;
-    private String idnv;
-    private String idkh;
     private Date ngayTao;
     private Date ngayHetHan;
     private int tinhTrang;
+    private KhachHangModel khm;
+    private NhanVienModel nvm;
 
     public HopDongModel() {
     }
 
-    public HopDongModel(String id, String idnv, String idkh, Date ngayTao, Date ngayHetHan, int tinhTrang) {
+    public HopDongModel(String id, Date ngayTao, Date ngayHetHan, int tinhTrang, KhachHangModel khm, NhanVienModel nvm) {
         this.id = id;
-        this.idnv = idnv;
-        this.idkh = idkh;
         this.ngayTao = ngayTao;
         this.ngayHetHan = ngayHetHan;
         this.tinhTrang = tinhTrang;
+        this.khm = khm;
+        this.nvm = nvm;
     }
 
     public String getId() {
@@ -38,20 +39,20 @@ public class HopDongModel {
         this.id = id;
     }
 
-    public String getIdnv() {
-        return idnv;
+    public KhachHangModel getKhm() {
+        return khm;
     }
 
-    public void setIdnv(String idnv) {
-        this.idnv = idnv;
+    public void setKhm(KhachHangModel khm) {
+        this.khm = khm;
     }
 
-    public String getIdkh() {
-        return idkh;
+    public NhanVienModel getNvm() {
+        return nvm;
     }
 
-    public void setIdkh(String idkh) {
-        this.idkh = idkh;
+    public void setNvm(NhanVienModel nvm) {
+        this.nvm = nvm;
     }
 
     public Date getNgayTao() {
@@ -78,6 +79,9 @@ public class HopDongModel {
         this.tinhTrang = tinhTrang;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return id;
+    }
+
 }

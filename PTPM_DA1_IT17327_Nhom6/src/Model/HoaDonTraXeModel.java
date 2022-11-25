@@ -15,9 +15,7 @@ public class HoaDonTraXeModel {
     private String id;
     private Date Ngaytra;
     private double phiphatsinh, tongtien;
-    private int tinhtrang, soluong;
-
-    private KhachHangModel khm;
+    private int tinhtrang;
     private HopDongModel hdm;
 
     public String getId() {
@@ -58,22 +56,6 @@ public class HoaDonTraXeModel {
 
     public void setTinhtrang(int tinhtrang) {
         this.tinhtrang = tinhtrang;
-    }
-
-    public int getSoluong() {
-        return soluong;
-    }
-
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
-    }
-
-    public KhachHangModel getKhm() {
-        return khm;
-    }
-
-    public void setKhm(KhachHangModel khm) {
-        this.khm = khm;
     }
 
     public HopDongModel getHdm() {
