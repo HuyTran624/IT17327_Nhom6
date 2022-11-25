@@ -13,6 +13,7 @@ import ViewModel.HoaDonTraXeViewModel;
 import ViewModel.HopDongViewModel;
 import ViewModel.KhachHangViewModel;
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,13 +64,11 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txttenkh1 = new javax.swing.JTextField();
         txtidhd1 = new javax.swing.JTextField();
         txtngaytra = new javax.swing.JTextField();
-        txtsoluong = new javax.swing.JTextField();
         txtphiphatsinh = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblhoadon = new javax.swing.JTable();
@@ -95,6 +94,7 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
         btndelete = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txttongtien = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -122,8 +122,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
 
         jLabel13.setText("ngày trả");
 
-        jLabel15.setText("số lượng");
-
         jLabel16.setText("tình trạng");
 
         jLabel17.setText("phí phát sinh");
@@ -132,23 +130,26 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
 
         txtidhd1.setEditable(false);
 
-        txtsoluong.setEditable(false);
-
         txtphiphatsinh.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtphiphatsinhCaretUpdate(evt);
             }
         });
+        txtphiphatsinh.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtphiphatsinhFocusLost(evt);
+            }
+        });
 
         tblhoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "id hd", "tên kh", "ngày trả", "số lượng", "tình trạng", "phí phát sinh", "tổng tiền"
+                "id", "id hd", "tên kh", "ngày trả", "tình trạng", "phí phát sinh", "tổng tiền"
             }
         ));
         tblhoadon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,6 +322,13 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
 
         txttongtien.setEditable(false);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -347,7 +355,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                             .addComponent(txtidkh1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel13)
@@ -355,18 +362,19 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtphiphatsinh, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                    .addComponent(txtsoluong, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                                     .addComponent(txtngaytra, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(txttongtien)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(rdodatra)
                                         .addGap(18, 18, 18)
-                                        .addComponent(rdochuatra))
-                                    .addComponent(txttongtien))))
+                                        .addComponent(rdochuatra)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btndelete)
                                 .addGap(48, 48, 48)))))
@@ -383,36 +391,37 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtidhd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txttenkh1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)
-                    .addComponent(btndelete))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txttenkh1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
+                            .addComponent(btndelete)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(txtngaytra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(rdodatra)
                             .addComponent(rdochuatra))
-                        .addGap(27, 27, 27)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(txtphiphatsinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txttongtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtidkh1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -651,7 +660,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                 h.getIdhd(),
                 ser.getkh(h.getIdhd()).getTen(),
                 convertdate(h.getNgaytra()),
-                h.getSoluong(),
                 h.getTinhtrang() == 0 ? "đã trả" : "chưa trả",
                 h.getPhiphatsinh(),
                 h.getTongtien()
@@ -666,7 +674,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
         txttenkh1.setText("");
         txtngaytra.setText("");
         txttongtien.setText("");
-        txtsoluong.setText("");
         rdochuatra.setSelected(true);
         txtphiphatsinh.setText("");
     }//GEN-LAST:event_btnxoaActionPerformed
@@ -698,15 +705,14 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
         txtidhd1.setText(tblhoadon.getValueAt(row, 1).toString());
         txttenkh1.setText(tblhoadon.getValueAt(row, 2).toString());
         txtngaytra.setText(tblhoadon.getValueAt(row, 3).toString());
-        txtsoluong.setText(tblhoadon.getValueAt(row, 4).toString());
-        if (tblhoadon.getValueAt(row, 5).toString().equalsIgnoreCase("đã trả")) {
+        if (tblhoadon.getValueAt(row, 4).toString().equalsIgnoreCase("đã trả")) {
             rdodatra.setSelected(true);
         } else {
             rdochuatra.setSelected(true);
         }
-        txtphiphatsinh.setText(tblhoadon.getValueAt(row, 6).toString());
+        txtphiphatsinh.setText(tblhoadon.getValueAt(row, 5).toString());
         txtidkh1.setText(ser.getkh(tblhoadon.getValueAt(row, 1).toString()).getId());
-        txttongtien.setText(tblhoadon.getValueAt(row, 7).toString());
+        txttongtien.setText(tblhoadon.getValueAt(row, 6).toString());
     }//GEN-LAST:event_tblhoadonMouseClicked
 
     private void btnQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQRActionPerformed
@@ -718,15 +724,15 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                 return;
             }
             String f_name = "id hoa don: " + tblhoadon.getValueAt(row, 0) + "\nten khach hang: " + tblhoadon.getValueAt(row, 2) + "\nid hop dong"
-                    + tblhoadon.getValueAt(row, 1) + "\nngay tra: " + tblhoadon.getValueAt(row, 3) + "\nso luong: " + tblhoadon.getValueAt(row, 4)
-                    + "\ntinh trang: " + tblhoadon.getValueAt(row, 5) + "\nphi phat sinh: " + (tblhoadon.getValueAt(row, 6).equals("chưa trả") ? 0 : 1) + "\ntong tien: " + tblhoadon.getValueAt(row, 7);
+                    + tblhoadon.getValueAt(row, 1) + "\nngay tra: " + tblhoadon.getValueAt(row, 3)
+                    + "\ntinh trang: " + tblhoadon.getValueAt(row, 4) + "\nphi phat sinh: " + (tblhoadon.getValueAt(row, 5).equals("chưa trả") ? 0 : 1) + "\ntong tien: " + tblhoadon.getValueAt(row, 6);
             ByteArrayOutputStream out = QRCode.from(f_name).to(ImageType.PNG).stream();
             String path = "D:\\fpt\\QRCode\\";
             fos = new FileOutputStream(new File(path + (UUID.randomUUID().toString() + ".PNG")));
             fos.write(out.toByteArray());
             fos.flush();
             openFileExplorer();
-        } catch (Exception ex) {
+        } catch (HeadlessException | IOException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnQRActionPerformed
@@ -742,13 +748,29 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void txtphiphatsinhCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtphiphatsinhCaretUpdate
-        if(txtidhd1.getText().equalsIgnoreCase("")){
-            return ;
+        try {
+            double tienthuexe = repo.tienthuexe(txtidhd1.getText());
+            if (txtidhd1.getText().equalsIgnoreCase("")) {
+                txttongtien.setText(String.valueOf(tienthuexe));
+                return;
+            }
+            double phiphatsinh = Double.parseDouble(txtphiphatsinh.getText());
+            if (phiphatsinh == 0) {
+                txttongtien.setText(String.valueOf(tienthuexe));
+            }
+            txttongtien.setText(String.valueOf(tienthuexe + phiphatsinh));
+        } catch (NumberFormatException ex) {
+            return;
         }
-        double tienthuexe = repo.tienthuexe(txtidhd1.getText());
-        double phiphatsinh = Double.parseDouble(txtphiphatsinh.getText());
-        txttongtien.setText(String.valueOf(tienthuexe + phiphatsinh));
     }//GEN-LAST:event_txtphiphatsinhCaretUpdate
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println(repo.tienthuexe(txtidhd1.getText()));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtphiphatsinhFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtphiphatsinhFocusLost
+
+    }//GEN-LAST:event_txtphiphatsinhFocusLost
 
     void openFileExplorer() {
         try {
@@ -790,7 +812,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
                 h.getIdhd(),
                 ser.getkh(h.getIdhd()).getTen(),
                 convertdate(h.getNgaytra()),
-                h.getSoluong(),
                 returnStatus(h.getTinhtrang()),
                 h.getPhiphatsinh(),
                 h.getTongtien(),};
@@ -844,10 +865,9 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
             hdm.setId(txtidhd1.getText());
             KhachHangModel khm = new KhachHangModel();
             khm.setId(txtidkh1.getText());
+            hdm.setKhm(khm);
             hdhtm.setHdm(hdm);
-            hdhtm.setKhm(khm);
             hdhtm.setNgaytra(sdf.parse(txtngaytra.getText()));
-            hdhtm.setSoluong(Integer.parseInt(txtsoluong.getText()));
             if (rdodatra.isSelected()) {
                 hdhtm.setTinhtrang(1);
             } else {
@@ -900,12 +920,12 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbbloai;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -940,7 +960,6 @@ public final class HoaDonTraXeUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtngaytao;
     private javax.swing.JTextField txtngaytra;
     private javax.swing.JTextField txtphiphatsinh;
-    private javax.swing.JTextField txtsoluong;
     private javax.swing.JTextField txttenkh1;
     private javax.swing.JTextField txttenkh2;
     private javax.swing.JTextField txttennv;
