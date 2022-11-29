@@ -9,6 +9,7 @@ import Model.KhachHangModel;
 import Service.Impl.KhachHangServiceImpl;
 import Service.KhachHangService;
 import ViewModel.KhachHangViewModel;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -223,6 +224,19 @@ public class DanhsachKhachHangView extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
+        txtTimK.setForeground(new java.awt.Color(153, 153, 153));
+        txtTimK.setText("Mã KH/Tên/SĐT Hoặc CCCD");
+        txtTimK.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTimKFocusGained(evt);
+            }
+        });
+        txtTimK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKMouseClicked(evt);
+            }
+        });
+
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,12 +411,26 @@ public class DanhsachKhachHangView extends javax.swing.JFrame {
 
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtTimKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtTimKMouseClicked
+
+    private void txtTimKFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKFocusGained
+        // TODO add your handling code here:
+        if(txtTimK.getText().equals("Mã KH/Tên/SĐT Hoặc CCCD")){
+            txtTimK.setText("");
+            txtTimK.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtTimKFocusGained
     public void ClearF(){
         txtTen.setText("");
         txtcccd.setText("");
         txtSdt.setText("");
         rdoNam.setSelected(true);
         txtMaKH.setText("");
+        
     }
     /**
      * @param args the command line arguments
