@@ -81,6 +81,16 @@ create table chiTietHopDong(
 )
 select * from nhanVien
 select * from khachHang
-insert into nhanVien values(newid(),N'hoàng văn b','2000-1-1','0978237842873',0,N'nhân viên')
+insert into nhanVien values('NV1',N'Nguyễn Mạnh Hà','2003-11-04','0857595060',0,N'Nhân Viên')
+insert into nhanVien values('NV2',N'Nguyễn Hữu Bình','2003-11-28','01234567733',0,N'Nhân Viên')
+insert into nhanVien values('NV3',N'Nguyễn Ngọc Minh','2003-11-04','09789238455',0,N'Quản Lý')
+insert into nhanVien values('NV4',N'Nguyễn Việt Anh','2003-11-04','09723847572',0,N'Nhân Viên')
+insert into nhanVien values('NV5',N'Hoàng Việt Dũng','2003-11-04','06823847923',0,N'Nhân Viên')
+insert into nhanVien values('NV6',N'Nguyễn Trung Anh','2003-11-04','02837692352',0,N'Nhân Viên')
+insert into nhanVien values('NV7',N'Trần Ngọc Huy','2003-11-04','06236365313',0,N'Nhân Viên')
+
+
+
+
 insert into khachHang values(newid(),'abcdxyz',N'Nguyễn Văn a','0323423534',0,'2367842867347862')
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
