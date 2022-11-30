@@ -231,10 +231,22 @@ insert into hopDong Values(NEWID(),'NV1','KH6','2022-11-10','2022-12-15',1,'','H
 insert into hopDong Values(NEWID(),'NV3','KH2','2022-11-12','2022-12-15',1,'','HD4')
 insert into hopDong Values(NEWID(),'NV2','KH30','2022-11-11','2022-12-15',1,'','HD5')
 insert into hopDong Values(NEWID(),'NV1','KH10','2022-11-13','2022-12-15',1,'','HD6')
-insert into hopDong Values(NEWID(),'NV7','KH17','2022-11-11','2022-12-15',1,'','HD7')
+insert into hopDong Values(NEWID(),'NV7','KH17','2022-11-11','2022-11-15',1,'','HD7')
 insert into hopDong Values(NEWID(),'NV4','KH29','2022-11-30','2022-12-15',1,'','HD8')
 insert into hopDong Values(NEWID(),'NV5','KH22','2022-11-27','2022-12-15',1,'','HD9')
 insert into hopDong Values(NEWID(),'NV1','KH13','2022-11-23','2022-12-15',1,'','HD10')
 insert into hopDong Values(NEWID(),'NV6','KH4','2022-11-25','2022-12-15',1,'','HD11')
 select * from chiTietXe where tinhTrangXe = 1;
-select * from khachHang
+select * from hopDong
+
+insert into chiTietHopDong values('FBB59B59-7C30-42D8-B2A7-11A744BD0189','20C-12.51235',4000000)
+insert into chiTietHopDong values('0BB3FDFE-3335-4AEC-B814-1B1BAA8CC228','22H-78.12365',5000000)
+insert into chiTietHopDong values('7F7B0DF8-565C-4C86-B7ED-282485849E4C','23B-23.57456',2800000)
+insert into chiTietHopDong values('9FF377D7-D254-426D-8368-3C8118BFBFFB','25B-72.83752',1500000)
+insert into chiTietHopDong values('FC267DA4-04EB-48FB-9500-4F480FD781AB','27B-82.36783',1800000)
+insert into chiTietHopDong values('FFFF3E64-3A19-4204-AB58-68DA267213C7','29B-91.82737',1500000)
+insert into chiTietHopDong values('BF917B4E-368A-4FCD-9AAF-9AAB749FC163','29N-15.76431',5000000)
+insert into chiTietHopDong values('746AADD8-4AC6-4555-BD06-BBB7EEAD80C3','30B-87.98745',3000000)
+insert into chiTietHopDong values('D0CBC6FF-90FF-4DAC-BF69-DE10FEC3FEF4','31B-72.84652',4000000)
+insert into chiTietHopDong values('1E040DBA-DD65-4F21-8341-E584D13F51BA','33B-78.94352',3000000)
+insert into chiTietHopDong values('3CD79F10-6A3A-4FE4-8981-E9B09AB54D54','99B-71.24752',1200000)
