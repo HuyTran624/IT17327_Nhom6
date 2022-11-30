@@ -11,7 +11,7 @@ create table loaiXe(
 )
 
 create table phieuBaoDuong(
-	id uniqueidentifier primary key,
+	id nvarchar(50) primary key,
 	bienSo nvarchar(50) foreign key references chiTietXe(bienSo),
 	ngayBaoDuong date,
 	ngayHoanThanh date,
@@ -33,9 +33,13 @@ create table nhanVien(
 	ngaySinh date,
 	sdt nvarchar(50),
 	gioiTinh bit,
-	chucVu nvarchar(50)
+	taikhoan nvarchar(50) foreign key references dangnhap(taikhoan)
 )
-
+create table dangnhap(
+	taikhoan nvarchar(50) primary key,
+	matkhau nvarchar(50),
+	chucvu nvarchar(50)
+) 
 
 create table khachHang(
 	maKH nvarchar(50) primary key,
@@ -47,14 +51,14 @@ create table khachHang(
 )
 
 create table hopDong(
-	id uniqueidentifier primary key,
+	mahopdong nvarchar(50) primary key,
 	idNv nvarchar(50) foreign key references nhanVien(idnv),
 	makh nvarchar(50) foreign key references khachHang(makh),
 	ngayTao date,
 	ngayHetHan date,
 	tinhTrang int,
 	sourceAnh nvarchar(50),
-	mahopdong nvarchar(50)
+	
 )
 
 create table ViPham(
@@ -63,11 +67,9 @@ create table ViPham(
 	
 )
 create table hoaDonTraXe(
-	id uniqueidentifier primary key,
-	makh nvarchar(50) foreign key references khachHang(makh),
-	idHopDong uniqueidentifier foreign key references hopDong(id),
+	mahoadon nvarchar(50) primary key,
+	mahopdong nvarchar(50) foreign key references hopDong(mahopdong),
 	ngayTra date,
-	soLuong int,
 	mavipham int foreign key references Vipham(mavipham),
 	phiPhatSinh float,
 	thanhTien float,
@@ -77,22 +79,30 @@ create table hoaDonTraXe(
 )
 
 create table chiTietHopDong(
-	idHopDong uniqueidentifier foreign key references hopDong(id),
+	mahopdong nvarchar(50) foreign key references hopDong(mahopdong),
 	bienSo nvarchar(50) foreign key references chiTietXe(bienSo),
 	tienCoc float,
-	primary key (idHopDong,bienSo) 
+	primary key (mahopdong,bienSo) 
 )
 select * from nhanVien
 select * from khachHang
 select * from loaixe
 select * from ViPham
-insert into nhanVien values('NV1',N'Nguyễn Mạnh Hà','2003-11-04','0857595060',0,N'Nhân Viên')
-insert into nhanVien values('NV2',N'Nguyễn Hữu Bình','2003-11-28','01234567733',0,N'Nhân Viên')
-insert into nhanVien values('NV3',N'Nguyễn Ngọc Minh','2003-11-04','09789238455',0,N'Quản Lý')
-insert into nhanVien values('NV4',N'Nguyễn Việt Anh','2003-11-04','09723847572',0,N'Nhân Viên')
-insert into nhanVien values('NV5',N'Hoàng Việt Dũng','2003-11-04','06823847923',0,N'Nhân Viên')
-insert into nhanVien values('NV6',N'Nguyễn Trung Anh','2003-11-04','02837692352',0,N'Nhân Viên')
-insert into nhanVien values('NV7',N'Trần Ngọc Huy','2003-11-04','06236365313',0,N'Nhân Viên')
+insert into dangnhap values('nguyenmanha123','12345678','Nhân Viên')
+insert into dangnhap values('nguyenhuubinh123','12345678','Nhân Viên')
+insert into dangnhap values('nguyentrunganh123','12345678','Nhân Viên')
+insert into dangnhap values('nguyenngocminh123','12345678','Quản Lý')
+insert into dangnhap values('nguyenvietanh123','12345678','Nhân Viên')
+insert into dangnhap values('hoangvietdung123','12345678','Nhân Viên')
+insert into dangnhap values('tranngochuy123','12345678','Nhân Viên')
+
+insert into nhanVien values('NV1',N'Nguyễn Mạnh Hà','2003-11-04','0857595060',0,N'nguyenmanha123')
+insert into nhanVien values('NV2',N'Nguyễn Hữu Bình','2003-11-28','01234567733',0,N'nguyenhuubinh123')
+insert into nhanVien values('NV3',N'Nguyễn Ngọc Minh','2003-11-04','09789238455',0,N'nguyenngocminh123')
+insert into nhanVien values('NV4',N'Nguyễn Việt Anh','2003-11-04','09723847572',0,N'nguyenvietanh123')
+insert into nhanVien values('NV5',N'Hoàng Việt Dũng','2003-11-04','06823847923',0,N'hoangvietdung123')
+insert into nhanVien values('NV6',N'Nguyễn Trung Anh','2003-11-04','02837692352',0,N'nguyentrunganh123')
+insert into nhanVien values('NV7',N'Trần Ngọc Huy','2003-11-04','06236365313',0,N'tranngochuy123')
 
 
 
@@ -221,32 +231,49 @@ insert into chiTietXe Values('37B-24.88567','LX16',0,150000,'')
 insert into chiTietXe Values('30B-66.23151','LX16',0,150000,'')
 
 select * from chiTietXe where tinhTrangXe = 3
-insert into phieuBaoDuong values(NEWID(),'29H-78.46537','2022-12-06','2022-12-13',200000,N'Thay dầu và Thay Máy Phát Điện')
-insert into phieuBaoDuong values(NEWID(),'30B-16.23564','2022-11-30','2022-12-14',300000,N'Động cơ bị bỏ máy')
-insert into phieuBaoDuong values(NEWID(),'30B-45.35123','2022-12-01','2022-12-13',200000,N'Hao hụt nhiên liệu, Thay Lại Bộ Nối')
+insert into phieuBaoDuong values('PBD1','29H-78.46537','2022-12-06','2022-12-13',200000,N'Thay dầu và Thay Máy Phát Điện')
+insert into phieuBaoDuong values('PBD2','30B-16.23564','2022-11-30','2022-12-14',300000,N'Động cơ bị bỏ máy')
+insert into phieuBaoDuong values('PBD3','30B-45.35123','2022-12-01','2022-12-13',200000,N'Hao hụt nhiên liệu, Thay Lại Bộ Nối')
 
-insert into hopDong Values(NEWID(),'NV1','KH21','2022-11-30','2022-12-15',1,'','HD1')
-insert into hopDong Values(NEWID(),'NV2','KH11','2022-11-20','2022-12-15',1,'','HD2')
-insert into hopDong Values(NEWID(),'NV1','KH6','2022-11-10','2022-12-15',1,'','HD3')
-insert into hopDong Values(NEWID(),'NV3','KH2','2022-11-12','2022-12-15',1,'','HD4')
-insert into hopDong Values(NEWID(),'NV2','KH30','2022-11-11','2022-12-15',1,'','HD5')
-insert into hopDong Values(NEWID(),'NV1','KH10','2022-11-13','2022-12-15',1,'','HD6')
-insert into hopDong Values(NEWID(),'NV7','KH17','2022-11-11','2022-11-15',1,'','HD7')
-insert into hopDong Values(NEWID(),'NV4','KH29','2022-11-30','2022-12-15',1,'','HD8')
-insert into hopDong Values(NEWID(),'NV5','KH22','2022-11-27','2022-12-15',1,'','HD9')
-insert into hopDong Values(NEWID(),'NV1','KH13','2022-11-23','2022-12-15',1,'','HD10')
-insert into hopDong Values(NEWID(),'NV6','KH4','2022-11-25','2022-12-15',1,'','HD11')
-select * from chiTietXe where tinhTrangXe = 1;
+insert into hopDong Values('HD1','NV1','KH21','2022-11-30','2022-12-15',1,'')
+insert into hopDong Values('HD2','NV2','KH11','2022-11-20','2022-12-15',1,'')
+insert into hopDong Values('HD3','NV1','KH6','2022-11-10','2022-12-15',1,'')
+insert into hopDong Values('HD4','NV3','KH2','2022-11-12','2022-12-15',1,'')
+insert into hopDong Values('HD5','NV2','KH30','2022-11-11','2022-12-15',1,'')
+insert into hopDong Values('HD6','NV1','KH10','2022-11-13','2022-12-15',1,'')
+insert into hopDong Values('HD7','NV7','KH17','2022-11-11','2022-11-15',1,'')
+insert into hopDong Values('HD8','NV4','KH29','2022-11-30','2022-12-15',1,'')
+insert into hopDong Values('HD9','NV5','KH22','2022-11-27','2022-12-15',1,'')
+insert into hopDong Values('HD10','NV1','KH13','2022-11-23','2022-12-15',1,'')
+insert into hopDong Values('HD11','NV6','KH4','2022-11-25','2022-11-26',1,'')
+insert into hopDong Values('HD12','NV5','KH5','2022-11-27','2022-11-29',1,'')
+insert into hopDong Values('HD13','NV2','KH16','2022-11-23','2022-11-25',1,'')
+insert into hopDong Values('HD14','NV7','KH9','2022-11-25','2022-11-27',1,'')
+select * from chiTietXe where tinhTrangXe = 0;
 select * from hopDong
+select * from chiTietHopDong
+delete hopDong
+delete chiTietHopDong
 
-insert into chiTietHopDong values('FBB59B59-7C30-42D8-B2A7-11A744BD0189','20C-12.51235',4000000)
-insert into chiTietHopDong values('0BB3FDFE-3335-4AEC-B814-1B1BAA8CC228','22H-78.12365',5000000)
-insert into chiTietHopDong values('7F7B0DF8-565C-4C86-B7ED-282485849E4C','23B-23.57456',2800000)
-insert into chiTietHopDong values('9FF377D7-D254-426D-8368-3C8118BFBFFB','25B-72.83752',1500000)
-insert into chiTietHopDong values('FC267DA4-04EB-48FB-9500-4F480FD781AB','27B-82.36783',1800000)
-insert into chiTietHopDong values('FFFF3E64-3A19-4204-AB58-68DA267213C7','29B-91.82737',1500000)
-insert into chiTietHopDong values('BF917B4E-368A-4FCD-9AAF-9AAB749FC163','29N-15.76431',5000000)
-insert into chiTietHopDong values('746AADD8-4AC6-4555-BD06-BBB7EEAD80C3','30B-87.98745',3000000)
-insert into chiTietHopDong values('D0CBC6FF-90FF-4DAC-BF69-DE10FEC3FEF4','31B-72.84652',4000000)
-insert into chiTietHopDong values('1E040DBA-DD65-4F21-8341-E584D13F51BA','33B-78.94352',3000000)
-insert into chiTietHopDong values('3CD79F10-6A3A-4FE4-8981-E9B09AB54D54','99B-71.24752',1200000)
+
+
+
+insert into chiTietHopDong values('HD1','20C-12.51235',4000000)
+insert into chiTietHopDong values('HD2','22H-78.12365',5000000)
+insert into chiTietHopDong values('HD3','23B-23.57456',2800000)
+insert into chiTietHopDong values('HD4','25B-72.83752',1500000)
+insert into chiTietHopDong values('HD5','27B-82.36783',1800000)
+insert into chiTietHopDong values('HD6','29B-91.82737',1500000)
+insert into chiTietHopDong values('HD7','29N-15.76431',5000000)
+insert into chiTietHopDong values('HD8','30B-87.98745',3000000)
+insert into chiTietHopDong values('HD9','31B-72.84652',4000000)
+insert into chiTietHopDong values('HD10','33B-78.94352',3000000)
+insert into chiTietHopDong values('HD11','99B-71.24752',1200000)
+
+insert into chiTietHopDong values('HD12','18B-12.34123',4000000)
+insert into chiTietHopDong values('HD13','22B-67.34245',5000000)
+insert into chiTietHopDong values('HD14','26B-12.56123',4000000)
+
+insert into hoaDonTraXe values('HDT1','HD12','2022-11-29',0,0,800000,'','')
+insert into hoaDonTraXe values('HDT2','HD13','2022-11-25',0,0,1000000,'','')
+insert into hoaDonTraXe values('HDT3','HD14','2022-11-27',0,0,800000,'','')
