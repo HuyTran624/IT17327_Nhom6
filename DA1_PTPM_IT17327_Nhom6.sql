@@ -6,7 +6,8 @@ create table loaiXe(
 	maLx nvarchar(50)primary key,
 	ten nvarchar(50),
 	giaNhap float,
-	giaThue float,
+	dongxe nvarchar(50),
+	theloaixe nvarchar(50)
 )
 
 create table phieuBaoDuong(
@@ -81,6 +82,7 @@ create table chiTietHopDong(
 )
 select * from nhanVien
 select * from khachHang
+select * from loaixe
 insert into nhanVien values('NV1',N'Nguyễn Mạnh Hà','2003-11-04','0857595060',0,N'Nhân Viên')
 insert into nhanVien values('NV2',N'Nguyễn Hữu Bình','2003-11-28','01234567733',0,N'Nhân Viên')
 insert into nhanVien values('NV3',N'Nguyễn Ngọc Minh','2003-11-04','09789238455',0,N'Quản Lý')
@@ -121,5 +123,35 @@ insert into khachHang values(newid(),'KH27',N'Nguyễn Việt Anh','0333675875',
 insert into khachHang values(newid(),'KH28',N'Trần Ngọc Huy','0856668563',0,'03456234','huytranisdabest@gmail.com')
 insert into khachHang values(newid(),'KH29',N'Đỗ Thành Cường','04567345734',1,'03457234','mailtest@gmail.com')
 insert into khachHang values(newid(),'KH30',N'Nguyễn Trung Anh','08746584588',0,'01561235','nguyentrunganhnta43@gmail.com')
+
+
+insert into loaixe values ('LX1', 'Wave Alpha', 12000000, N'Wave', N'Xe số')
+insert into loaixe values ('LX2', 'Wave SRX', 15000000,N'Wave', N'Xe số')
+insert into loaixe values ('LX3', 'Honda Winner X', 25000000,N'Honda',N'Xe côn')
+insert into loaixe values ('LX4', 'Yamaha Exciter 155', 40000000,N'Yamaha',N'Xe côn')
+insert into loaixe values ('LX5', 'Suzuki Raider R150', 43000000,N'Suzuki',N'Xe côn')
+insert into loaixe values ('LX6', 'Yamaha Exciter 150', 41000000,N'Yamaha',N'Xe côn')
+insert into loaixe values ('LX7', 'Yamaha Sirius RC', 40000000,N'Yamaha',N'Xe số')
+insert into loaixe values ('LX8', 'Cub mini', 15000000,N'Cub',N'Xe số')
+insert into loaixe values ('LX9', 'Dream 50cc', 8000000,N'Honda',N'Xe số')
+insert into loaixe values ('LX24', 'Dream', 11000000,N'Honda',N'Xe số')
+insert into loaixe values ('LX10', 'CBR 150', 41000000,N'Honda',N'Xe côn')
+insert into loaixe values ('LX11', 'Angela', 12000000,N'SYM',N'Xe số')
+insert into loaixe values ('LX12', 'Grande', 35000000,N'Yamaha',N'Xe ga')
+insert into loaixe values ('LX13', 'Janus', 25000000,N'Yamaha',N'Xe ga')
+insert into loaixe values ('LX14', 'Lead', 25000000,N'Honda',N'Xe ga')
+insert into loaixe values ('LX15', 'Vision', 25000000,N'Honda',N'Xe ga')
+insert into loaixe values ('LX16', 'Airblade', 33000000,N'Honda',N'Xe ga')
+insert into loaixe values ('LX17', 'Vario', 38000000,N'Honda',N'Xe ga')
+insert into loaixe values ('LX18', 'SH Mode', 45000000,N'Honda',N'Xe ga')
+insert into loaixe values ('LX19', 'Win', 8000000,N'Honda',N'Xe côn')
+insert into loaixe values ('LX20', 'Kawasaki H2R', 15000000000,N'Kawasaki',N'Xe côn')
+insert into loaixe values ('LX20', 'Kawasaki Z1000', 350000000,N'Kawasaki',N'Xe côn')
+insert into loaixe values ('LX21', 'Moto Guzzi V85 TT Travel', 400000000,N'Guzzi',N'Xe côn')
+insert into loaixe values ('LX22', 'Honda CBR1000RR-R Fireblade SP', 850000000,N'Honda',N'Xe côn')
+insert into loaixe values ('LX23', 'rebel', 10000000000,N'Honda',N'Xe côn')
+
+
+
 
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
