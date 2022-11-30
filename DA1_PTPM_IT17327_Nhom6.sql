@@ -21,11 +21,11 @@ create table phieuBaoDuong(
 create table chiTietXe(
 	bienSo nvarchar(50) primary key,
 	maLx nvarchar(50) foreign key references loaiXe(maLx),
-	tinhTrangXe int,
-	TrangThai int,
-	TinhTrang int,
+	tinhTrangXe int, -- 0 Co The Cho Thue, 1 Dang Cho Thue,2 Dang Hong Hoc,3 Dang Bao Duong
 	giathuetrenngay money,
+	mota nvarchar(50)
 )
+alter table 
 
 create table nhanVien(
 	idnv nvarchar(50) primary key,
@@ -68,7 +68,7 @@ create table hoaDonTraXe(
 	idHopDong uniqueidentifier foreign key references hopDong(id),
 	ngayTra date,
 	soLuong int,
-	mavipham int foreign key references BienBan(mavipham),
+	mavipham int foreign key references Vipham(mavipham),
 	phiPhatSinh float,
 	thanhTien float,
 	sourceAnh nvarchar(50),
@@ -148,11 +148,11 @@ insert into loaixe values ('LX16', 'Airblade', 33000000,N'Honda',N'Xe ga')
 insert into loaixe values ('LX17', 'Vario', 38000000,N'Honda',N'Xe ga')
 insert into loaixe values ('LX18', 'SH Mode', 45000000,N'Honda',N'Xe ga')
 insert into loaixe values ('LX19', 'Win', 8000000,N'Honda',N'Xe côn')
-insert into loaixe values ('LX20', 'Kawasaki H2R', 15000000000,N'Kawasaki',N'Xe côn')
+insert into loaixe values ('LX20', 'Kawasaki H2R', 1500000000,N'Kawasaki',N'Xe côn')
 insert into loaixe values ('LX20', 'Kawasaki Z1000', 350000000,N'Kawasaki',N'Xe côn')
 insert into loaixe values ('LX21', 'Moto Guzzi V85 TT Travel', 400000000,N'Guzzi',N'Xe côn')
 insert into loaixe values ('LX22', 'Honda CBR1000RR-R Fireblade SP', 850000000,N'Honda',N'Xe côn')
-insert into loaixe values ('LX23', 'rebel', 10000000000,N'Honda',N'Xe côn')
+insert into loaixe values ('LX23', 'rebel', 1000000000,N'Honda',N'Xe côn')
 
 insert into ViPham Values (0 ,N'Không Vi Phạm')
 insert into ViPham Values (1 ,N'Trả Xe Trước Hạn')
@@ -161,6 +161,64 @@ insert into ViPham Values (3 ,N'Xe hỏng')
 insert into ViPham Values (4 ,N'Xe Thiếu Phụ Kiện')
 insert into ViPham Values (5 ,N'Mất Xe')
 insert into ViPham Values(6, N'Khác')
+
+
+
+insert into chiTietXe Values('29H-78.46537','LX1',3,180000,'')
+insert into chiTietXe Values('29N-65.75673','LX10',0,500000,'')
+insert into chiTietXe Values('27B-82.36783','LX11',1,180000,'')
+insert into chiTietXe Values('29O-88.26345','LX12',0,400000,'')
+insert into chiTietXe Values('29B-62.38751','LX13',0,300000,'')
+insert into chiTietXe Values('30B-87.98745','LX14',1,300000,'')
+insert into chiTietXe Values('30B-16.23564','LX15',3,300000,'')
+insert into chiTietXe Values('30B-16.23541','LX16',0,350000,'')
+insert into chiTietXe Values('22B-98.71237','LX17',0,400000,'')
+insert into chiTietXe Values('22H-78.12365','LX18',1,500000,'')
+insert into chiTietXe Values('26B-17.28367','LX19',0,150000,'')
+insert into chiTietXe Values('29B-56.41562','LX2',0,180000,'')
+insert into chiTietXe Values('29N-89.97661','LX20',0,10000000,'')
+insert into chiTietXe Values('29N-15.76431','LX21',1,5000000,'')
+insert into chiTietXe Values('29B-43.73334','LX22',0,8000000,'')
+insert into chiTietXe Values('25F-72.83752','LX23',0,9200000,'')
+insert into chiTietXe Values('25B-72.83752','LX24',1,150000,'')
+insert into chiTietXe Values('29H-98.76871','LX3',0,250000,'')
+insert into chiTietXe Values('31B-72.83752','LX4',0,400000,'')
+insert into chiTietXe Values('31H-72.13752','LX5',0,400000,'')
+insert into chiTietXe Values('31B-72.84652','LX6',1,400000,'')
+insert into chiTietXe Values('31N-72.81252','LX7',0,400000,'')
+insert into chiTietXe Values('29C-12.43752','LX8',0,150000,'')
+insert into chiTietXe Values('99B-71.24752','LX9',1,120000,'')
+insert into chiTietXe Values('83B-14.13752','LX11',0,150000,'')
+insert into chiTietXe Values('41F-12.33752','LX1',0,150000,'')
+insert into chiTietXe Values('30G-14.25713','LX1',0,150000,'')
+insert into chiTietXe Values('29B-91.82737','LX13',1,150000,'')
+insert into chiTietXe Values('30K-12.54345','LX14',0,150000,'')
+insert into chiTietXe Values('18B-12.34123','LX5',0,400000,'')
+insert into chiTietXe Values('19B-11.24155','LX6',0,400000,'')
+insert into chiTietXe Values('20C-12.51235','LX6',1,400000,'')
+insert into chiTietXe Values('26B-12.56123','LX7',0,400000,'')
+insert into chiTietXe Values('29F-75.34612','LX7',0,400000,'')
+insert into chiTietXe Values('30B-12.35123','LX15',0,150000,'')
+insert into chiTietXe Values('30B-12.34123','LX18',0,500000,'')
+insert into chiTietXe Values('31H-11.23413','LX6',2,400000,'')
+insert into chiTietXe Values('31C-57.68435','LX1',0,150000,'')
+insert into chiTietXe Values('23B-23.57456','LX3',1,280000,'')
+insert into chiTietXe Values('23B-12.55679','LX18',0,500000,'')
+insert into chiTietXe Values('22F-67.89446','LX14',0,250000,'')
+insert into chiTietXe Values('30J-78.95663','LX1',0,150000,'')
+insert into chiTietXe Values('33B-78.94352','LX12',1,300000,'')
+insert into chiTietXe Values('44B-56.46345','LX2',0,150000,'')
+insert into chiTietXe Values('22B-67.52235','LX18',0,500000,'')
+insert into chiTietXe Values('29H-12.12123','LX10',0,400000,'')
+insert into chiTietXe Values('30B-34.62412','LX10',2,400000,'')
+insert into chiTietXe Values('37B-24.35123','LX16',0,300000,'')
+insert into chiTietXe Values('30B-66.35123','LX16',0,300000,'')
+insert into chiTietXe Values('30B-45.35123','LX15',3,300000,'')
+insert into chiTietXe Values('22B-67.34245','LX18',0,500000,'')
+insert into chiTietXe Values('29H-12.16823','LX10',0,150000,'')
+insert into chiTietXe Values('30B-34.56734','LX18',0,500000,'')
+insert into chiTietXe Values('37B-24.88567','LX16',0,150000,'')
+insert into chiTietXe Values('30B-66.23151','LX16',0,150000,'')
 
 
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
