@@ -15,7 +15,8 @@ create table phieuBaoDuong(
 	bienSo nvarchar(50) foreign key references chiTietXe(bienSo),
 	ngayBaoDuong date,
 	ngayHoanThanh date,
-	chiPhi float
+	chiPhi float,
+	mota nvarchar(50)
 )
 
 create table chiTietXe(
@@ -220,5 +221,9 @@ insert into chiTietXe Values('30B-34.56734','LX18',0,500000,'')
 insert into chiTietXe Values('37B-24.88567','LX16',0,150000,'')
 insert into chiTietXe Values('30B-66.23151','LX16',0,150000,'')
 
+select * from chiTietXe where tinhTrangXe = 3
+insert into phieuBaoDuong values(NEWID(),'29H-78.46537','2022-12-06','2022-12-13',200000,N'Thay dầu và Thay Máy Phát Điện')
+insert into phieuBaoDuong values(NEWID(),'30B-16.23564','2022-11-30','2022-12-14',300000,N'Động cơ bị bỏ máy')
+insert into phieuBaoDuong values(NEWID(),'30B-45.35123','2022-12-01','2022-12-13',200000,N'Hao hụt nhiên liệu, Thay Lại Bộ Nối')
 
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
