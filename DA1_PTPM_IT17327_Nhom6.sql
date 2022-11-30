@@ -71,7 +71,9 @@ create table hoaDonTraXe(
 	mavipham int foreign key references BienBan(mavipham),
 	phiPhatSinh float,
 	thanhTien float,
-	sourceAnh nvarchar(50)
+	sourceAnh nvarchar(50),
+	Mota nvarchar(50)
+
 )
 
 create table chiTietHopDong(
@@ -151,7 +153,12 @@ insert into loaixe values ('LX21', 'Moto Guzzi V85 TT Travel', 400000000,N'Guzzi
 insert into loaixe values ('LX22', 'Honda CBR1000RR-R Fireblade SP', 850000000,N'Honda',N'Xe côn')
 insert into loaixe values ('LX23', 'rebel', 10000000000,N'Honda',N'Xe côn')
 
-
-
+insert into BienBan Values (0 ,'Không Vi Phạm')
+insert into BienBan Values (1 ,'Trả Xe Trước Hạn')
+insert into BienBan Values (2 ,'Trả Xe Quá Hạn')
+insert into BienBan Values (3 ,'Xe hỏng')
+insert into BienBan Values (4 ,'Xe Thiếu Phụ Kiện')
+insert into BienBan Values (5 ,'Mất Xe')
+insert into BienBan Values(6, 'Khác')
 
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
