@@ -56,19 +56,7 @@ create table hopDong(
 	sourceAnh nvarchar(50),
 	mahopdong nvarchar(50)
 )
-insert into hopDong Values(NEWID(),'NV1','KH21','2022-11-30','2022-12-15',1,'','HD1')
-insert into hopDong Values(NEWID(),'NV2','KH11','2022-11-20','2022-12-15',1,'','HD2')
-insert into hopDong Values(NEWID(),'NV1','KH6','2022-11-10','2022-12-15',1,'','HD3')
-insert into hopDong Values(NEWID(),'NV3','KH2','2022-11-12','2022-12-15',1,'','HD4')
-insert into hopDong Values(NEWID(),'NV2','KH30','2022-11-11','2022-12-15',1,'','HD5')
-insert into hopDong Values(NEWID(),'NV1','KH10','2022-11-13','2022-12-15',1,'','HD6')
-insert into hopDong Values(NEWID(),'NV7','KH17','2022-11-11','2022-12-15',1,'','HD7')
-insert into hopDong Values(NEWID(),'NV4','KH29','2022-11-30','2022-12-15',1,'','HD8')
-insert into hopDong Values(NEWID(),'NV5','KH22','2022-11-27','2022-12-15',1,'','HD9')
-insert into hopDong Values(NEWID(),'NV1','KH13','2022-11-23','2022-12-15',1,'','HD10')
-insert into hopDong Values(NEWID(),'NV6','KH4','2022-11-25','2022-12-15',1,'','HD11')
-select * from chiTietXe where tinhTrangXe = 1;
-select * from khachHang
+
 create table ViPham(
 	mavipham int primary key,
 	ten nvarchar(50),
@@ -237,4 +225,16 @@ insert into phieuBaoDuong values(NEWID(),'29H-78.46537','2022-12-06','2022-12-13
 insert into phieuBaoDuong values(NEWID(),'30B-16.23564','2022-11-30','2022-12-14',300000,N'Động cơ bị bỏ máy')
 insert into phieuBaoDuong values(NEWID(),'30B-45.35123','2022-12-01','2022-12-13',200000,N'Hao hụt nhiên liệu, Thay Lại Bộ Nối')
 
-insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
+insert into hopDong Values(NEWID(),'NV1','KH21','2022-11-30','2022-12-15',1,'','HD1')
+insert into hopDong Values(NEWID(),'NV2','KH11','2022-11-20','2022-12-15',1,'','HD2')
+insert into hopDong Values(NEWID(),'NV1','KH6','2022-11-10','2022-12-15',1,'','HD3')
+insert into hopDong Values(NEWID(),'NV3','KH2','2022-11-12','2022-12-15',1,'','HD4')
+insert into hopDong Values(NEWID(),'NV2','KH30','2022-11-11','2022-12-15',1,'','HD5')
+insert into hopDong Values(NEWID(),'NV1','KH10','2022-11-13','2022-12-15',1,'','HD6')
+insert into hopDong Values(NEWID(),'NV7','KH17','2022-11-11','2022-12-15',1,'','HD7')
+insert into hopDong Values(NEWID(),'NV4','KH29','2022-11-30','2022-12-15',1,'','HD8')
+insert into hopDong Values(NEWID(),'NV5','KH22','2022-11-27','2022-12-15',1,'','HD9')
+insert into hopDong Values(NEWID(),'NV1','KH13','2022-11-23','2022-12-15',1,'','HD10')
+insert into hopDong Values(NEWID(),'NV6','KH4','2022-11-25','2022-12-15',1,'','HD11')
+select * from chiTietXe where tinhTrangXe = 1;
+select * from khachHang
