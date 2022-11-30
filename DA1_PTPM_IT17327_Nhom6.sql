@@ -26,7 +26,7 @@ create table chiTietXe(
 	TinhTrang int,
 	giathuetrenngay money,
 )
-drop table nhanVien;
+
 create table nhanVien(
 	idnv nvarchar(50) primary key,
 	ten nvarchar(50),
@@ -57,7 +57,7 @@ create table hopDong(
 	sourceAnh nvarchar(50),
 	mahopdong nvarchar(50)
 )
-create table BienBan(
+create table ViPham(
 	mavipham int primary key,
 	ten nvarchar(50),
 	
@@ -85,6 +85,7 @@ create table chiTietHopDong(
 select * from nhanVien
 select * from khachHang
 select * from loaixe
+select * from ViPham
 insert into nhanVien values('NV1',N'Nguyễn Mạnh Hà','2003-11-04','0857595060',0,N'Nhân Viên')
 insert into nhanVien values('NV2',N'Nguyễn Hữu Bình','2003-11-28','01234567733',0,N'Nhân Viên')
 insert into nhanVien values('NV3',N'Nguyễn Ngọc Minh','2003-11-04','09789238455',0,N'Quản Lý')
@@ -153,12 +154,13 @@ insert into loaixe values ('LX21', 'Moto Guzzi V85 TT Travel', 400000000,N'Guzzi
 insert into loaixe values ('LX22', 'Honda CBR1000RR-R Fireblade SP', 850000000,N'Honda',N'Xe côn')
 insert into loaixe values ('LX23', 'rebel', 10000000000,N'Honda',N'Xe côn')
 
-insert into BienBan Values (0 ,'Không Vi Phạm')
-insert into BienBan Values (1 ,'Trả Xe Trước Hạn')
-insert into BienBan Values (2 ,'Trả Xe Quá Hạn')
-insert into BienBan Values (3 ,'Xe hỏng')
-insert into BienBan Values (4 ,'Xe Thiếu Phụ Kiện')
-insert into BienBan Values (5 ,'Mất Xe')
-insert into BienBan Values(6, 'Khác')
+insert into ViPham Values (0 ,N'Không Vi Phạm')
+insert into ViPham Values (1 ,N'Trả Xe Trước Hạn')
+insert into ViPham Values (2 ,N'Trả Xe Quá Hạn')
+insert into ViPham Values (3 ,N'Xe hỏng')
+insert into ViPham Values (4 ,N'Xe Thiếu Phụ Kiện')
+insert into ViPham Values (5 ,N'Mất Xe')
+insert into ViPham Values(6, N'Khác')
+
 
 insert into hopDong values(newid(),'C147D902-124D-48F7-91AE-77565EA30CEC','05CDD12F-AEAA-45FD-A467-2BAB68FDFC58','2021-11-1','2022-2-1',0)
